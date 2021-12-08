@@ -19,8 +19,14 @@ cd tests
 nosetests -v --with-coverage --cover-package=meaShear
 ```
 
-## Things to do
-As you can see, the code suffers many kinds of errors
-+ TypeError
-+ Parameter ranges
-+ ...
+## Test Development List
++ Inputs Control (interact correctly with users)
+    -   Test to make sure the code requires the inputs galaxies and PSF images
+        are ndarrays
+    -   Test to make sure that if the input image has values that are
+        problematic, like NaN or Inf, the code does something reasonable
+    -   Test to make sure the tuning parameters in reasonable ranges
+        ($0<$scale_par$<1$), (weight_par$>0$)
++ Code performance (accuracy)
+    -   Use ring test to test the accuracy of the estimator on noiseless
+        galaxies

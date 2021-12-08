@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>README</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="http://gfarm.ipmu.jp/~xiangchong.li/me/mystyle.css" />
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="unit-testing">Unit Testing</h1>
+<p>If you have not prepared your code to implement unit test, please use the following example.</p>
+<h2 id="download-and-install">Download and Install</h2>
+<pre class="shell"><code>git clone https://github.com/mr-superonion/meaShear.git
+cd meaShear
+pip install .</code></pre>
+<h2 id="example">Example</h2>
+<p>You can find a testing example <a href="./tests/test_accuracy.py">here</a>, and you can run the test by</p>
+<pre class="shell"><code>cd tests
+nosetests -v --with-coverage --cover-package=meaShear</code></pre>
+<h2 id="test-development-list">Test Development List</h2>
+<ul>
+<li>Inputs Control (interact correctly with users)
+<ul>
+<li>Test to make sure the code requires the inputs galaxies and PSF images are ndarrays</li>
+<li>Test to make sure that if the input image has values that are problematic, like NaN or Inf, the code does something reasonable</li>
+<li>Test to make sure the tuning parameters in reasonable ranges (<span class="math inline">\(0&lt;\)</span>scale_par<span class="math inline">\(&lt;1\)</span>), (weight_par<span class="math inline">\(&gt;0\)</span>)</li>
+</ul></li>
+<li>Code performance (accuracy)
+<ul>
+<li>Use ring test to test the accuracy of the estimator on noiseless galaxies</li>
+</ul></li>
+</ul>
+</body>
+</html>
