@@ -77,7 +77,6 @@
     code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="http://gfarm.ipmu.jp/~xiangchong.li/me/mystyle.css" />
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -91,13 +90,9 @@ cd meaShear
 pip install .</code></pre>
 <h2 id="about-the-code">About the code</h2>
 <h3 id="shear-estimation">shear estimation</h3>
-Estimating ellipticities (<span class="math inline">\(e_{1,2}\)</span>) from galaxy images and using them to estimate the underlying shear distortion (<span class="math inline">\(\gamma_{1,2}\)</span>). <span class="math display">\[e_{1}(\gamma)=\bar{e}_1+ \gamma_1 \bar{R} + O(\gamma_1^2)\]</span>
 <p align="center">
-<img src="fig/shear_distort.png" alt="shear" width="400">
+<img src="fig/shear_distort.png" alt="shear" width="800">
 </p>
-<p>If <span class="math inline">\(\gamma_1\)</span> is a constant and galaxies are randomly oriented (<span class="math inline">\(\langle \bar{e} \rangle=0\)</span>), you can estimate shear by</p>
-<p><span class="math display">\[\gamma_1 = \frac{\left\langle e_{1}\right\rangle}{\left\langle R
-\right\rangle}+ O(\gamma^3)\]</span></p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> meaShear</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -134,7 +129,7 @@ Estimating ellipticities (<span class="math inline">\(e_{1,2}\)</span>) from gal
 <ul>
 <li>Test to make sure the code requires the inputs galaxies and PSF images are ndarrays</li>
 <li>Test to make sure that if the input image has values that are problematic, like NaN or Inf, the code does something reasonable</li>
-<li>Test to make sure the tuning parameters in reasonable ranges (<span class="math inline">\(0&lt;\)</span>scale_par<span class="math inline">\(&lt;1\)</span>), (weight_par<span class="math inline">\(&gt;0\)</span>)</li>
+<li>Test to make sure the tuning parameters in reasonable ranges (0&lt;scale_par&lt;1), (weight_par&gt;0)</li>
 </ul></li>
 </ul>
 <h3 id="example">Example</h3>
