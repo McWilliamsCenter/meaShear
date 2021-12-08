@@ -14,14 +14,17 @@ pip install .
 ## About the code
 ### shear estimation
 
-Estimating ellipticities from galaxy images and using the estimated
-ellipticities to estimate the underlying shear distortion.
+Estimating ellipticities ($e_{1,2}$) from galaxy images and using them to
+estimate the underlying shear distortion ($\gamma_{1,2}$).
 $$e_{1}(\gamma)=\bar{e}_1+ \gamma_1 \bar{R} + O(\gamma_1^2)$$
 <p align="center">
 <img src="fig/shear_distort.png" alt="shear" width="400">
 </p>
-If $\gamma_1$ is a constant, you can estimate shear by
-$$\gamma_1 = \frac{\left\langle e_{1}\right\rangle}{\left\langle R \right\rangle}+ O(\gamma_1^3)$$
+If $\gamma_1$ is a constant and galaxies are randomly oriented ($\langle \bar{e}
+\rangle=0$), you can estimate shear by
+
+$$\gamma_1 = \frac{\left\langle e_{1}\right\rangle}{\left\langle R
+\right\rangle}+ O(\gamma^3)$$
 
 ```python
 

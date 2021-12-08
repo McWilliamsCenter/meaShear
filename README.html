@@ -91,11 +91,13 @@ cd meaShear
 pip install .</code></pre>
 <h2 id="about-the-code">About the code</h2>
 <h3 id="shear-estimation">shear estimation</h3>
-Estimating ellipticities from galaxy images and using the estimated ellipticities to estimate the underlying shear distortion. <span class="math display">\[e_{1}(\gamma)=\bar{e}_1+ \gamma_1 \bar{R} + O(\gamma_1^2)\]</span>
+Estimating ellipticities (<span class="math inline">\(e_{1,2}\)</span>) from galaxy images and using them to estimate the underlying shear distortion (<span class="math inline">\(\gamma_{1,2}\)</span>). <span class="math display">\[e_{1}(\gamma)=\bar{e}_1+ \gamma_1 \bar{R} + O(\gamma_1^2)\]</span>
 <p align="center">
 <img src="fig/shear_distort.png" alt="shear" width="400">
 </p>
-<p>If <span class="math inline">\(\gamma_1\)</span> is a constant, you can estimate shear by <span class="math display">\[\gamma_1 = \frac{\left\langle e_{1}\right\rangle}{\left\langle R \right\rangle}+ O(\gamma_1^3)\]</span></p>
+<p>If <span class="math inline">\(\gamma_1\)</span> is a constant and galaxies are randomly oriented (<span class="math inline">\(\langle \bar{e} \rangle=0\)</span>), you can estimate shear by</p>
+<p><span class="math display">\[\gamma_1 = \frac{\left\langle e_{1}\right\rangle}{\left\langle R
+\right\rangle}+ O(\gamma^3)\]</span></p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> meaShear</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
