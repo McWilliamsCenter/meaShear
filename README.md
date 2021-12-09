@@ -78,7 +78,9 @@ assert_raises(ValueError,your_function,input_1,input_2,input_3,input_4)
 You can find a testing example [here](./tests/test_accuracy.py), and you can run the test by
 
 ```shell
+pip install nose
+
 cd tests
-nosetests -w tests -v --with-coverage --cover-package=meaShear
+nosetests -w tests -v
 ```
 
