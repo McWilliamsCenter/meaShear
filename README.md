@@ -12,6 +12,11 @@ pip install .
 ```
 
 ## About the code
+
+This code implements a simple estimator of the weak gravitational lensing shear -- i.e., the distortion of light from distant source galaxies as they pass through the large-scale structure of the Universe on their way to us.  The deflection of light rays by the matter distribution causes changes in galaxy brightness, size, and shape.  Coherent changes in shape can be used to measure those deflections and learn about the distribution of dark matter in the Universe.
+
+The code in this repository implements one step in that process: measurement of galaxy shapes of images, after accounting for blurring of the images due to the light passing through the atmosphere and telescope optics.
+
 ### shear estimation
 <p align="center">
 <img src="fig/shear_distort.png" alt="shear" width="800">
@@ -30,7 +35,7 @@ import numpy.lib.recfunctions as rfn
 # Read PSF image
 psfData=pyfits.getdata('data/psf_test.fits')
 # Read GAL image
-print('Reading the simulated image ditorted by g_1= 0.02, g2=0.00')
+print('Reading the simulated image distorted by g_1= 0.02, g2=0.00')
 galDatAll=pyfits.getdata('data/gal_test.fits')
 imgList=[galDatAll[i*64:(i+1)*64,0:64] for i in range(4)]
 
@@ -48,7 +53,6 @@ g2_est=np.average(ellRes['fpfs_e2'])/np.average(ellRes['fpfs_RE'])
 print('estimated shear is: g1= %.5f, g2= %.5f' %(g1_est,g2_est))
 ```
 
-
 ## Test Development List
 
 + Code performance (accuracy)
@@ -62,6 +66,14 @@ print('estimated shear is: g1= %.5f, g2= %.5f' %(g1_est,g2_est))
     -   value control: the tuning parameters in reasonable ranges
         (0<scale_par<1), (weight_par>0)
 
+### Useful functions
+
+```python
+np.testing.assert_almost_equal(out_come, expectation, 5) # 1e-5 accuracy
+assert_raises(TypeError,your_function,input_1,input_2,input_3,input_4)
+assert_raises(ValueError,your_function,input_1,input_2,input_3,input_4)
+```
+
 ### Example
 You can find a testing example [here](./tests/test_accuracy.py), and you can run the test by
 
@@ -70,11 +82,3 @@ cd tests
 nosetests -w tests -v --with-coverage --cover-package=meaShear
 ```
 
-### Useful functions
-
-
-```python
-np.testing.assert_almost_equal(out_come, expectation, 5) # 1e-5 accuracy
-assert_raises(TypeError,your_function,input_1,input_2,input_3,input_4)
-assert_raises(ValueError,your_function,input_1,input_2,input_3,input_4)
-```

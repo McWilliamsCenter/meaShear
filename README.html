@@ -89,6 +89,8 @@
 cd meaShear
 pip install .</code></pre>
 <h2 id="about-the-code">About the code</h2>
+<p>This code implements a simple estimator of the weak gravitational lensing shear – i.e., the distortion of light from distant source galaxies as they pass through the large-scale structure of the Universe on their way to us. The deflection of light rays by the matter distribution causes changes in galaxy brightness, size, and shape. Coherent changes in shape can be used to measure those deflections and learn about the distribution of dark matter in the Universe.</p>
+<p>The code in this repository implements one step in that process: measurement of galaxy shapes of images, after accounting for blurring of the images due to the light passing through the atmosphere and telescope optics.</p>
 <h3 id="shear-estimation">shear estimation</h3>
 <p align="center">
 <img src="fig/shear_distort.png" alt="shear" width="800">
@@ -105,7 +107,7 @@ pip install .</code></pre>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Read PSF image</span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>psfData<span class="op">=</span>pyfits.getdata(<span class="st">&#39;data/psf_test.fits&#39;</span>)</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Read GAL image</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Reading the simulated image ditorted by g_1= 0.02, g2=0.00&#39;</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Reading the simulated image distorted by g_1= 0.02, g2=0.00&#39;</span>)</span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>galDatAll<span class="op">=</span>pyfits.getdata(<span class="st">&#39;data/gal_test.fits&#39;</span>)</span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>imgList<span class="op">=</span>[galDatAll[i<span class="op">*</span><span class="dv">64</span>:(i<span class="op">+</span><span class="dv">1</span>)<span class="op">*</span><span class="dv">64</span>,<span class="dv">0</span>:<span class="dv">64</span>] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>)]</span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
@@ -135,13 +137,13 @@ pip install .</code></pre>
 <li>value control: the tuning parameters in reasonable ranges (0&lt;scale_par&lt;1), (weight_par&gt;0)</li>
 </ul></li>
 </ul>
+<h3 id="useful-functions">Useful functions</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>np.testing.assert_almost_equal(out_come, expectation, <span class="dv">5</span>) <span class="co"># 1e-5 accuracy</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>assert_raises(<span class="pp">TypeError</span>,your_function,input_1,input_2,input_3,input_4)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>assert_raises(<span class="pp">ValueError</span>,your_function,input_1,input_2,input_3,input_4)</span></code></pre></div>
 <h3 id="example">Example</h3>
 <p>You can find a testing example <a href="./tests/test_accuracy.py">here</a>, and you can run the test by</p>
 <pre class="shell"><code>cd tests
 nosetests -w tests -v --with-coverage --cover-package=meaShear</code></pre>
-<h3 id="useful-functions">Useful functions</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>np.testing.assert_almost_equal(out_come, expectation, <span class="dv">5</span>) <span class="co"># 1e-5 accuracy</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>assert_raises(<span class="pp">TypeError</span>,your_function,input_1,input_2,input_3,input_4)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>assert_raises(<span class="pp">ValueError</span>,your_function,input_1,input_2,input_3,input_4)</span></code></pre></div>
 </body>
 </html>
