@@ -93,6 +93,10 @@ pip install .</code></pre>
 <p align="center">
 <img src="fig/shear_distort.png" alt="shear" width="800">
 </p>
+<h3 id="ring-test">ring test</h3>
+<ul>
+<li>Simulate a group galaxies with intrinsic ellipticity average to zero and distort them by known shear to test the shear estimation.</li>
+</ul>
 <div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> meaShear</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -117,8 +121,6 @@ pip install .</code></pre>
 <span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>g1_est<span class="op">=</span>np.average(ellRes[<span class="st">&#39;fpfs_e1&#39;</span>])<span class="op">/</span>np.average(ellRes[<span class="st">&#39;fpfs_RE&#39;</span>])</span>
 <span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>g2_est<span class="op">=</span>np.average(ellRes[<span class="st">&#39;fpfs_e2&#39;</span>])<span class="op">/</span>np.average(ellRes[<span class="st">&#39;fpfs_RE&#39;</span>])</span>
 <span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;estimated shear is: g1= </span><span class="sc">%.5f</span><span class="st">, g2= </span><span class="sc">%.5f</span><span class="st">&#39;</span> <span class="op">%</span>(g1_est,g2_est))</span></code></pre></div>
-<h3 id="ring-test">ring test</h3>
-<p>Ring thest is widely applide to check the accuracy of shear estimator.</p>
 <h2 id="test-development-list">Test Development List</h2>
 <ul>
 <li>Code performance (accuracy)
@@ -127,14 +129,19 @@ pip install .</code></pre>
 </ul></li>
 <li>Inputs Control (interact correctly with users)
 <ul>
-<li>Test to make sure the code requires the inputs galaxies and PSF images are ndarrays</li>
-<li>Test to make sure that if the input image has values that are problematic, like NaN or Inf, the code does something reasonable</li>
-<li>Test to make sure the tuning parameters in reasonable ranges (0&lt;scale_par&lt;1), (weight_par&gt;0)</li>
+<li>type control: Inputs galaxies and PSF images are ndarrays</li>
+<li>type control: The tuning parameters are real</li>
+<li>value control: If the input image has values that are problematic, like NaN or Inf, the code does something reasonable</li>
+<li>value control: the tuning parameters in reasonable ranges (0&lt;scale_par&lt;1), (weight_par&gt;0)</li>
 </ul></li>
 </ul>
 <h3 id="example">Example</h3>
 <p>You can find a testing example <a href="./tests/test_accuracy.py">here</a>, and you can run the test by</p>
 <pre class="shell"><code>cd tests
-nosetests -v --with-coverage --cover-package=meaShear</code></pre>
+nosetests -w tests -v --with-coverage --cover-package=meaShear</code></pre>
+<h3 id="useful-functions">Useful functions</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>np.testing.assert_almost_equal(out_come, expectation, <span class="dv">5</span>) <span class="co"># 1e-5 accuracy</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>assert_raises(<span class="pp">TypeError</span>,your_function,input_1,input_2,input_3,input_4)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>assert_raises(<span class="pp">ValueError</span>,your_function,input_1,input_2,input_3,input_4)</span></code></pre></div>
 </body>
 </html>

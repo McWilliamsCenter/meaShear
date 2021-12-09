@@ -17,6 +17,10 @@ pip install .
 <img src="fig/shear_distort.png" alt="shear" width="800">
 </p>
 
+### ring test
++ Simulate a group galaxies with intrinsic ellipticity average to zero and
+distort them by known shear to test the shear estimation.
+
 ```python
 
 import meaShear
@@ -44,9 +48,6 @@ g2_est=np.average(ellRes['fpfs_e2'])/np.average(ellRes['fpfs_RE'])
 print('estimated shear is: g1= %.5f, g2= %.5f' %(g1_est,g2_est))
 ```
 
-### ring test
-Ring thest is widely applide to check the accuracy of shear estimator.
-
 
 ## Test Development List
 
@@ -54,11 +55,11 @@ Ring thest is widely applide to check the accuracy of shear estimator.
     -   Use ring test to test the accuracy of the estimator on noiseless
         galaxies
 + Inputs Control (interact correctly with users)
-    -   Test to make sure the code requires the inputs galaxies and PSF images
-        are ndarrays
-    -   Test to make sure that if the input image has values that are
+    -   type control:  Inputs galaxies and PSF images are ndarrays
+    -   type control:  The tuning parameters are real
+    -   value control: If the input image has values that are
         problematic, like NaN or Inf, the code does something reasonable
-    -   Test to make sure the tuning parameters in reasonable ranges
+    -   value control: the tuning parameters in reasonable ranges
         (0<scale_par<1), (weight_par>0)
 
 ### Example
@@ -66,5 +67,14 @@ You can find a testing example [here](./tests/test_accuracy.py), and you can run
 
 ```shell
 cd tests
-nosetests -v --with-coverage --cover-package=meaShear
+nosetests -w tests -v --with-coverage --cover-package=meaShear
+```
+
+### Useful functions
+
+
+```python
+np.testing.assert_almost_equal(out_come, expectation, 5) # 1e-5 accuracy
+assert_raises(TypeError,your_function,input_1,input_2,input_3,input_4)
+assert_raises(ValueError,your_function,input_1,input_2,input_3,input_4)
 ```
