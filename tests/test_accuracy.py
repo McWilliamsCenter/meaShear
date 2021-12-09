@@ -13,7 +13,8 @@ def run_noiseless_gal(itest):
 
     ellRes=[]
     for i in range(4):
-        ellRes.append(meaShear.measureEllip(imgList[i],psfData))
+        eR=meaShear.measureEllip(imgList[i],psfData,scale_par=0.85,weight_par=100.)
+        ellRes.append(eR)
 
     ellRes =   rfn.stack_arrays(ellRes,usemask=False)
 
