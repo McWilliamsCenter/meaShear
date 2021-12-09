@@ -10,6 +10,7 @@ setup(
     python_requires='>=3.6',
     install_requires=[
         'numpy',
+        'astropy',
     ],
     include_dirs=numpy.get_include(),
     packages=find_packages(),
