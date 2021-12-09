@@ -9,11 +9,11 @@ def measureEllip(galData,psfData,scale_par=0.85,weight_par=100.):
     Parameters:
         galData:    2D array of galaxy image    [ndarray]
         psfData:    2D array of PSF image       [ndarray]
-        scale_par:  The measurement focuses on scales larger than 1/scale_par*seeing
-        weight_par: The weigthing parameter changes the relative weights between galaxies
+        scale_par:  The typical measurement -- 1/scale_par*seeing
+        weight_par: The weighting parameter changes the relative weights between galaxies
 
     Returns :
-        FPFS ellipticity and shear response
+        galaxy ellipticity (e) and shear response (R)
     """
     # type control
     if type(galData) is not np.ndarray:
