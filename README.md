@@ -42,7 +42,7 @@ imgList=[galDatAll[i*64:(i+1)*64,0:64] for i in range(4)]
 ellRes=[]
 for i in range(4):
     # input image and PSF to estimate e and R
-    eR=meaShear.measureEllip(imgList[i],psfData)
+    eR=meaShear.measureEllip(imgList[i],psfData,scale_par=0.85,weight_par=100.)
     ellRes.append()
 
 ellRes =   rfn.stack_arrays(ellRes,usemask=False)
@@ -56,9 +56,9 @@ print('estimated shear is: g1= %.5f, g2= %.5f' %(g1_est,g2_est))
 ## Test Development List
 
 + Code performance (accuracy)
-    -   Use ring test to test the accuracy of the estimator on noiseless
-        galaxies
-+ Inputs Control (interact correctly with users)
+    -   Use ring test (45 degree rotated galaxies) to test the accuracy of the
+        estimator on noiseless galaxies
++ Inputs Control (interaction with users)
     -   type control:  Inputs galaxies and PSF images are ndarrays
     -   type control:  The tuning parameters are real
     -   value control: If the input image has values that are
